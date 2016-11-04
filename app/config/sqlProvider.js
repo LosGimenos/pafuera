@@ -13,9 +13,10 @@ const sqlProvider = {
     create: sql('./sql/user/create.sql'),
     delete: sql('./sql/user/delete.sql'),
   },
-  brokelynEvents: {
+  brokelyn_events: {
     all: sql('./sql/brokelynEvent/all.sql'),
     find: sql('./sql/brokelynEvent/find.sql'),
+    findByLike: sql('./sql/brokelynEvent/find_by_like.sql'),
     create: sql('./sql/brokelynEvent/create.sql'),
     delete: sql('./sql/brokelynEvent/delete.sql'),
   },

@@ -1,32 +1,29 @@
 const db = require('../config/db');
-const sql = require('../config/sqlProvider').brokelynEvents;
+const sql = require('../config/sqlProvider').brokelyn_events;
 const BrokelynEvent = require('../models/BrokelynEvent');
 
-class BrokelynEventDAO {
-  static create({ source,
-                cost,
-                start_date,
-                month,
-                day,
-                year,
-                title,
-                event_url,
-                img_src,
-                address,
-                description }) {
-    return db.one(sql.create, [source,
-                                cost,
-                                start_date,
-                                month,
-                                day,
-                                year,
-                                title,
-                                event_url,
-                                img_src,
-                                address,
-                                description
-                              ])
-              .then((data) => new BrokelynEvent(data));
+class BrokelynEventsDAO {
+  static create({
+    source,
+    cost,
+    start_date,
+    title,
+    event_url,
+    img_src,
+    address,
+    description,
+    }) {
+    return db.one(sql.create, [
+      source,
+      cost,
+      start_date,
+      title,
+      event_url,
+      img_src,
+      address,
+      description,
+    ])
+      .then((data) => new BrokelynEvent(data));
   }
   static delete(id) {
     return db.none(sql.delete, [id]);
@@ -36,7 +33,12 @@ class BrokelynEventDAO {
     const value = keyValue[key];
     return db.map(sql.find, [key, value], (row) => new BrokelynEvent(row));
   }
+  static searchByLike(keyValue) {
+    const key = Object.keys(keyValue)[0];
+    const value = keyValue[key];
+    return db.map(sql.findByLike, [key, `%${value}%`], (row) => new BrokelynEvent(row));
+  }
 }
 
-module.exports = BrokelynEventDAO;
+module.exports = BrokelynEventsDAO;
 
