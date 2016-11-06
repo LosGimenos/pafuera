@@ -23,12 +23,14 @@ const sqlProvider = {
   villageVoiceEvents: {
     all: sql('./sql/villageVoiceEvent/all.sql'),
     find: sql('./sql/villageVoiceEvent/find.sql'),
+    findByLike: sql('./sql/villageVoiceEvent/find_by_like.sql'),
     create: sql('./sql/villageVoiceEvent/create.sql'),
     delete: sql('./sql/villageVoiceEvent/delete.sql'),
   },
   brooklynVeganEvents: {
     all: sql('./sql/brooklynVeganEvent/all.sql'),
     find: sql('./sql/brooklynVeganEvent/find.sql'),
+    findByLike: sql('./sql/brooklynVeganEvent/find_by_like.sql'),
     create: sql('./sql/brooklynVeganEvent/create.sql'),
     delete: sql('./sql/brooklynVeganEvent/delete.sql'),
   },

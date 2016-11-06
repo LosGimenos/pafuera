@@ -1,1 +1,1 @@
-SELECT * FROM broooklyn_vegan_events WHERE $1^=$2;
+SELECT * FROM brooklyn_vegan_events WHERE $1^=$2;

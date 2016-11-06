@@ -1,1 +1,1 @@
-INSERT INTO skint_events (source, cost, start_date, title, event_url, img_src, address, description) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;
+INSERT INTO village_voice_events (source, cost, start_date, title, event_url, img_src, address, description) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;
