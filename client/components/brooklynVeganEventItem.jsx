@@ -27,6 +27,7 @@ const BrooklynVeganEventItem = ({ source,
     <div>
       <div className="img-div" style={divStyle} />
       <h3 className="event-title">{title}</h3>
+      <div className="title-span hidden"><p>{cost}</p></div>
       <p>{startDate}</p>
       <p>{address}</p>
       <p>{description}</p>

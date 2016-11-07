@@ -10,11 +10,13 @@ export default class App extends Component {
       brokelynEvents: [],
       brooklynVeganEvents: [],
       villageVoiceEvents: [],
+      skintEvents: [],
       step: 1,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addStep = this.addStep.bind(this);
+    this.removeStep = this.removeStep.bind(this);
     this.changeView = this.changeView.bind(this);
   }
   handleSubmit(e) {
@@ -40,6 +42,13 @@ export default class App extends Component {
            .catch((err) => {
              console.log(err);
            });
+    request.get('/api/v1/skintEvents')
+           .then((data) => {
+             this.setState({ skintEvents: data.body });
+           })
+           .catch((err) => {
+             console.log(err);
+           });
     this.addStep();
   }
   addStep() {
@@ -59,6 +68,7 @@ export default class App extends Component {
           brokelynEvents={this.state.brokelynEvents}
           brooklynVeganEvents={this.state.brooklynVeganEvents}
           villageVoiceEvents={this.state.villageVoiceEvents}
+          skintEvents={this.state.skintEvents}
         />;
     }
   }
@@ -68,7 +78,7 @@ export default class App extends Component {
         <div id="header" className="row nav">
           <h2>Pa'Fuera</h2>
           <ul>
-            <li>Checking this out</li>
+            <li onClick={this.removeStep}>Get out there!</li>
           </ul>
         </div>
         <div id="first" className="row">

@@ -35,10 +35,11 @@ const sqlProvider = {
     delete: sql('./sql/brooklynVeganEvent/delete.sql'),
   },
   skintEvents: {
-    all: sql('./sql/skintEvents/all.sql'),
-    find: sql('./sql/skintEvents/find.sql'),
-    create: sql('./sql/skintEvents/create.sql'),
-    delete: sql('./sql/skintEvents/delete.sql'),
+    all: sql('./sql/skintEvent/all.sql'),
+    find: sql('./sql/skintEvent/find.sql'),
+    findByLike: sql('./sql/skintEvent/find_by_like.sql'),
+    create: sql('./sql/skintEvent/create.sql'),
+    delete: sql('./sql/skintEvent/delete.sql'),
   },
 };
 

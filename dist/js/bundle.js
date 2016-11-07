@@ -21477,11 +21477,13 @@
 	      brokelynEvents: [],
 	      brooklynVeganEvents: [],
 	      villageVoiceEvents: [],
+	      skintEvents: [],
 	      step: 1
 	    };
 	
 	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.addStep = _this.addStep.bind(_this);
+	    _this.removeStep = _this.removeStep.bind(_this);
 	    _this.changeView = _this.changeView.bind(_this);
 	    return _this;
 	  }
@@ -21504,6 +21506,11 @@
 	      });
 	      _superagent2.default.get('/api/v1/villageVoiceEvents').then(function (data) {
 	        _this2.setState({ villageVoiceEvents: data.body });
+	      }).catch(function (err) {
+	        console.log(err);
+	      });
+	      _superagent2.default.get('/api/v1/skintEvents').then(function (data) {
+	        _this2.setState({ skintEvents: data.body });
 	      }).catch(function (err) {
 	        console.log(err);
 	      });
@@ -21531,7 +21538,8 @@
 	          return _react2.default.createElement(_resultsPage2.default, {
 	            brokelynEvents: this.state.brokelynEvents,
 	            brooklynVeganEvents: this.state.brooklynVeganEvents,
-	            villageVoiceEvents: this.state.villageVoiceEvents
+	            villageVoiceEvents: this.state.villageVoiceEvents,
+	            skintEvents: this.state.skintEvents
 	          });
 	      }
 	    }
@@ -21554,8 +21562,8 @@
 	            null,
 	            _react2.default.createElement(
 	              'li',
-	              null,
-	              'Checking this out'
+	              { onClick: this.removeStep },
+	              'Get out there!'
 	            )
 	          )
 	        ),
@@ -23240,6 +23248,14 @@
 	
 	var _brooklynVeganEventItem2 = _interopRequireDefault(_brooklynVeganEventItem);
 	
+	var _villageVoiceEventItem = __webpack_require__(182);
+	
+	var _villageVoiceEventItem2 = _interopRequireDefault(_villageVoiceEventItem);
+	
+	var _skintEventItem = __webpack_require__(183);
+	
+	var _skintEventItem2 = _interopRequireDefault(_skintEventItem);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23251,7 +23267,8 @@
 	var propTypes = {
 	  brokelynEvents: _react2.default.PropTypes.array,
 	  brooklynVeganEvents: _react2.default.PropTypes.array,
-	  villageVoiceEvents: _react2.default.PropTypes.array
+	  villageVoiceEvents: _react2.default.PropTypes.array,
+	  skintEvents: _react2.default.PropTypes.array
 	};
 	
 	var ResultsPage = function (_Component) {
@@ -23317,11 +23334,35 @@
 	      return this.props.villageVoiceEvents.map(function (event) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'event-item' },
+	          { className: 'event-item-odd' },
 	          _react2.default.createElement(
 	            'a',
 	            { href: event.eventURL, target: '_blank' },
-	            _react2.default.createElement(_brooklynVeganEventItem2.default, {
+	            _react2.default.createElement(_villageVoiceEventItem2.default, {
+	              source: event.source,
+	              cost: event.cost,
+	              startDate: event.startDate,
+	              title: event.title,
+	              eventURL: event.eventURL,
+	              imgSrc: event.imgSrc,
+	              address: event.address,
+	              description: event.description
+	            })
+	          )
+	        );
+	      });
+	    }
+	  }, {
+	    key: 'skintEvents',
+	    value: function skintEvents() {
+	      return this.props.skintEvents.map(function (event) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'event-item-odd' },
+	          _react2.default.createElement(
+	            'a',
+	            { href: event.eventURL, target: '_blank' },
+	            _react2.default.createElement(_skintEventItem2.default, {
 	              source: event.source,
 	              cost: event.cost,
 	              startDate: event.startDate,
@@ -23349,6 +23390,7 @@
 	            null,
 	            'Brought to you by Brokelyn!'
 	          ),
+	          _react2.default.createElement('div', { id: 'brokelyn-logo-div' }),
 	          this.brokelynEvents()
 	        ),
 	        _react2.default.createElement(
@@ -23359,19 +23401,31 @@
 	            null,
 	            'Brought to you by Village Voice!'
 	          ),
+	          _react2.default.createElement('div', { id: 'village-voice-logo-div' }),
 	          this.villageVoiceEvents()
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brooklyn-vegan-events-viewer', className: 'three' },
+	          { id: 'brooklyn-vegan-events-viewer', className: 'two' },
 	          _react2.default.createElement(
 	            'p',
 	            null,
 	            'Brought to you by Brooklyn Vegan!'
 	          ),
+	          _react2.default.createElement('div', { id: 'brooklyn-vegan-logo-div' }),
 	          this.brooklynVeganEvents()
 	        ),
-	        _react2.default.createElement('div', { id: 'the-skint-events-viewer', className: 'three' })
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'the-skint-events-viewer', className: 'three' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Brought to you by The Skint!'
+	          ),
+	          _react2.default.createElement('div', { id: 'skint-logo-div' }),
+	          this.skintEvents()
+	        )
 	      );
 	    }
 	  }]);
@@ -23514,6 +23568,15 @@
 	      title
 	    ),
 	    _react2.default.createElement(
+	      "div",
+	      { className: "title-span hidden" },
+	      _react2.default.createElement(
+	        "p",
+	        null,
+	        cost
+	      )
+	    ),
+	    _react2.default.createElement(
 	      "p",
 	      null,
 	      startDate
@@ -23534,6 +23597,147 @@
 	BrooklynVeganEventItem.propTypes = propTypes;
 	
 	exports.default = BrooklynVeganEventItem;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var propTypes = {
+	  source: _react2.default.PropTypes.string,
+	  cost: _react2.default.PropTypes.string,
+	  startDate: _react2.default.PropTypes.string,
+	  title: _react2.default.PropTypes.string,
+	  eventURL: _react2.default.PropTypes.string,
+	  imgSrc: _react2.default.PropTypes.string,
+	  address: _react2.default.PropTypes.string,
+	  description: _react2.default.PropTypes.string
+	};
+	
+	var VillageVoiceEventItem = function VillageVoiceEventItem(_ref) {
+	  var source = _ref.source,
+	      cost = _ref.cost,
+	      startDate = _ref.startDate,
+	      title = _ref.title,
+	      eventURL = _ref.eventURL,
+	      imgSrc = _ref.imgSrc,
+	      address = _ref.address,
+	      description = _ref.description;
+	
+	  var divStyle = {
+	    background: "url('" + imgSrc + "')"
+	  };
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement(
+	      "h3",
+	      { className: "event-title" },
+	      title
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "title-span" },
+	      _react2.default.createElement(
+	        "p",
+	        null,
+	        cost
+	      )
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      startDate
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      address
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      description
+	    )
+	  );
+	};
+	
+	VillageVoiceEventItem.propTypes = propTypes;
+	
+	exports.default = VillageVoiceEventItem;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var propTypes = {
+	  source: _react2.default.PropTypes.string,
+	  cost: _react2.default.PropTypes.string,
+	  startDate: _react2.default.PropTypes.string,
+	  title: _react2.default.PropTypes.string,
+	  eventURL: _react2.default.PropTypes.string,
+	  imgSrc: _react2.default.PropTypes.string,
+	  address: _react2.default.PropTypes.string,
+	  description: _react2.default.PropTypes.string
+	};
+	
+	var SkintEventItem = function SkintEventItem(_ref) {
+	  var source = _ref.source,
+	      cost = _ref.cost,
+	      startDate = _ref.startDate,
+	      title = _ref.title,
+	      eventURL = _ref.eventURL,
+	      imgSrc = _ref.imgSrc,
+	      address = _ref.address,
+	      description = _ref.description;
+	
+	  var divStyle = {
+	    background: "url('" + imgSrc + "')"
+	  };
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      startDate
+	    ),
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      description
+	    )
+	  );
+	};
+	
+	SkintEventItem.propTypes = propTypes;
+	
+	exports.default = SkintEventItem;
 
 /***/ }
 /******/ ]);
