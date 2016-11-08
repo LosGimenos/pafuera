@@ -1,5 +1,5 @@
 const express = require('express');
-const SkintEventsController = require('../controllers/SkintEventsController');
+const SkintEventsController = require('../controllers/skintEventsController');
 
 const router = express.Router();
 
