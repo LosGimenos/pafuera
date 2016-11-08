@@ -17,10 +17,10 @@ app.use(bodyParser.json());
 
 app.use(morgan('dev'));
 
-app.use('/outside/skintEvents', skintEventsRouter);
-app.use('/outside/brokelynEvents', brokelynEventsRouter);
-app.use('/outside/brooklynVeganEvents', brooklynVeganEventsRouter);
-app.use('/outside/villageVoiceEvents', villageVoiceEventsRouter);
+app.use(process.env.SKINT_EVENTS, skintEventsRouter);
+app.use(process.env.BROKELYN_EVENTS, brokelynEventsRouter);
+app.use(process.env.BROOKLYN_VEGAN_EVENTS, brooklynVeganEventsRouter);
+app.use(process.env.VILLAGE_VOICE_EVENTS, villageVoiceEventsRouter);
 
 app.use('/api/v1/brokelynEvents', apiBrokelynEventsRouter);
 app.use('/api/v1/brooklynVeganEvents', apiBrooklynVeganEventsRouter);

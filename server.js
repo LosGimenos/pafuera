@@ -1,3 +1,7 @@
+if (!process.env.PORT) {
+  require('dotenv').config();
+}
+
 const path = require('path');
 const express = require('express');
 
@@ -10,6 +14,4 @@ app.get('/', (req, res) => {
 
 const port = process.env.PORT;
 
-app.listen(port, () => {
-  console.log(`Listening on ${port}`);
-});
+app.listen(port);
