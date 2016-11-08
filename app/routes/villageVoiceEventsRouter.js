@@ -1,5 +1,5 @@
 const express = require('express');
-const VillageVoiceEventsController = require('../controllers/VillageVoiceEventsController');
+const VillageVoiceEventsController = require('../controllers/villageVoiceEventsController');
 
 const router = express.Router();
 
