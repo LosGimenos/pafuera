@@ -9,7 +9,7 @@ class BrooklynVeganEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    BrooklynVeganEventsDAO.searchByLike({ start_date: 'Nov 8' }).then((events) => {
+    BrooklynVeganEventsDAO.searchByLike({ start_date: 'Nov 9' }).then((events) => {
       res.status(200).json(events);
     });
   }
