@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 const request = require('superagent');
 const SkintScrape = require('./scrapers/skintScrape');
 const SkintEventsDAO = require('../services/skintEventsDAO');
+const DateSearch = require('../services/timers/dateSearch');
 
 class SkintEventsController {
   static getAllOfCurrentUser(req, res) {
@@ -10,7 +11,9 @@ class SkintEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    SkintEventsDAO.searchByLike({ start_date: '11/9' }).then((events) => {
+    const date = new DateSearch();
+    const searchDate = date.getModifiedSearchDate(1);
+    SkintEventsDAO.searchByLike({ start_date: `${searchDate}` }).then((events) => {
       res.status(200).json(events);
     });
   }

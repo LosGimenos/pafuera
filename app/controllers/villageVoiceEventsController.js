@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const request = require('superagent');
 const VillageVoiceEventsDAO = require('../services/villageVoiceEventsDAO');
+const DateSearch = require('../services/timers/dateSearch');
 
 class VillageVoiceEventsController {
   static getAllOfCurrentUser(req, res) {
@@ -9,7 +10,9 @@ class VillageVoiceEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    VillageVoiceEventsDAO.searchByLike({ start_date: 'Nov 10' }).then((events) => {
+    const date = new DateSearch();
+    const searchDate = date.getSearchDate();
+    VillageVoiceEventsDAO.searchByLike({ start_date: `${searchDate}` }).then((events) => {
       res.status(200).json(events);
     });
   }

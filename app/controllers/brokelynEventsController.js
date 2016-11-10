@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const request = require('superagent');
 const BrokelynEventsDAO = require('../services/brokelynEventsDAO');
+const DateSearch = require('../services/timers/dateSearch');
 
 class BrokelynEventsController {
   static getAllOfCurrentUser(req, res) {
@@ -9,7 +10,9 @@ class BrokelynEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    BrokelynEventsDAO.searchByLike({ start_date: 'November 10' }).then((events) => {
+    const date = new DateSearch();
+    const searchDate = date.getModifiedSearchDate(0);
+    BrokelynEventsDAO.searchByLike({ start_date: `${searchDate}` }).then((events) => {
       res.status(200).json(events);
     });
   }
