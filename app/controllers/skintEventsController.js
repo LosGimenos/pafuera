@@ -10,7 +10,7 @@ class SkintEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    SkintEventsDAO.searchByLike({ start_date: '11/8' }).then((events) => {
+    SkintEventsDAO.searchByLike({ start_date: '11/9' }).then((events) => {
       res.status(200).json(events);
     });
   }

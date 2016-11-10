@@ -9,7 +9,7 @@ class VillageVoiceEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    VillageVoiceEventsDAO.searchByLike({ start_date: 'Nov 9' }).then((events) => {
+    VillageVoiceEventsDAO.searchByLike({ start_date: 'Nov 10' }).then((events) => {
       res.status(200).json(events);
     });
   }

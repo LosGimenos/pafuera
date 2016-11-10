@@ -9,7 +9,7 @@ class BrokelynEventsController {
     });
   }
   static getAllOfSelectedDay(req, res) {
-    BrokelynEventsDAO.searchByLike({ start_date: 'November 9' }).then((events) => {
+    BrokelynEventsDAO.searchByLike({ start_date: 'November 10' }).then((events) => {
       res.status(200).json(events);
     });
   }
