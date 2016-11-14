@@ -1,6 +1,6 @@
 # Pa'Fuera!
 
-[Pa'Fuera!]('') 
+![Pa'Fuera](https://github.com/LosGimenos/pafuera/blob/master/img/Screen%20Shot%202016-11-11%20at%203.47.00%20PM.png?raw=true) 
 
 ### NYC Events Blog Aggregator with consummable Api. 
 #### Made with Node, Express, React, Postgresql, Cheerio.
