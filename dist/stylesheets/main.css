@@ -97,7 +97,9 @@ a {
 
 .nav {
   background-color: #22313F;
-  height: 3em;
+  font-size: 125%;
+  height: 4em;
+  width: 100%;
   color: #F64747;
 }
 
@@ -111,7 +113,7 @@ a {
 }
 
 #first {
-  height: 91vh;
+  height: 89vh;
   background: linear-gradient(
       rgba(0, 0, 0, 0.35),
       rgba(0, 0, 0, 0.35)
@@ -123,14 +125,20 @@ a {
 
 #landing-page-component {
   position: relative;
-  left: 5%;
+  /*left: 5%;*/
   top: 25%;
+}
+
+h3 {
+  font-size: 150%;
+  padding-left: 15%;
 }
 
 input {
   background-color: #5C97BF;
-  width: 40%;
-  height: 30px;
+  font-size: 100%;
+  width: 50%;
+  height: 3em;
   float: right;
   border: 1px solid white;
   box-shadow: 2px 2px 10px 4px;
@@ -147,6 +155,7 @@ div#results-view-component {
 
 div#results-view-component p {
   text-align: center;
+  font-size: 120%;
 }
 
 div#brokelyn-events-viewer {
@@ -158,7 +167,6 @@ div#brokelyn-events-viewer {
   border: 1px solid white;
   padding: .5%;
   margin-bottom: 3%;
-  font-size: 80%;
 }
 
 .event-item {
@@ -181,13 +189,13 @@ div#brokelyn-events-viewer {
 }
 
 #skint-logo-div {
-  height: 199px;
+  height: 19.5em;
   background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
   background-size: cover;
 }
 
 #brokelyn-logo-div {
-  height: 200px;
+  height: 20em;
   background: url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
   background-size: cover;
   background-position: center;
@@ -195,6 +203,7 @@ div#brokelyn-events-viewer {
 
 #village-voice-logo-div {
   height: 180px;
+  padding-top: 8.5em;
   background: url('http://socobk.com/wp-content/uploads/2014/07/villagevoice.png');
   background-position: center;
   background-size: cover;
@@ -202,8 +211,8 @@ div#brokelyn-events-viewer {
 
 #brooklyn-vegan-logo-div {
   background: url('http://www.brooklynvegan.com/files/2015/12/bv-1logo-new1.png');
-  height: 180px;
-  background-size: 120px 155px;
+  height: 20em;
+  background-size: 12.25em 10em;
   background-repeat: no-repeat;
   background-position: center;
 }
