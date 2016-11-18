@@ -34,7 +34,7 @@ class BrooklynVeganEventsController {
     BrooklynVeganEventsDAO.delete(req.params.id)
                     .then(() => res.status(204).end());
   }
-  static scrape() {
+  static scrape(req, response) {
     const eventArray = [];
     const searchUrl =
       'http://nyc-shows.brooklynvegan.com/events/today';
@@ -48,8 +48,8 @@ class BrooklynVeganEventsController {
              const $ = cheerio.load(res.text);
 
              // find date
-             const startDate = $('div.ds-break-left','div#ds-events-list')
-                                     .find('span.ds-list-break-date', 'a').text();
+             const date = new DateSearch();
+             const startDate = date.getSearchDate();
 
              $('div.ds-listing', 'div#ds-events-list').each(function(i, e) {
 
