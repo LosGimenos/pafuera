@@ -23290,16 +23290,20 @@
 	          _react2.default.createElement(
 	            'a',
 	            { href: event.eventURL, target: '_blank' },
-	            _react2.default.createElement(_brokelynEventItem2.default, {
-	              source: event.source,
-	              cost: event.cost,
-	              startDate: event.startDate,
-	              title: event.title,
-	              eventURL: event.eventURL,
-	              imgSrc: event.imgSrc,
-	              address: event.address,
-	              description: event.description
-	            })
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(_brokelynEventItem2.default, {
+	                source: event.source,
+	                cost: event.cost,
+	                startDate: event.startDate,
+	                title: event.title,
+	                eventURL: event.eventURL,
+	                imgSrc: event.imgSrc,
+	                address: event.address,
+	                description: event.description
+	              })
+	            )
 	          )
 	        );
 	      });
@@ -23384,47 +23388,51 @@
 	        { id: 'results-view-component' },
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brokelyn-events-viewer', className: 'three' },
+	          { id: 'brokelyn-events-viewer' },
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Brokelyn!'
+	            'div',
+	            { className: 'test' },
+	            _react2.default.createElement(
+	              'ul',
+	              null,
+	              this.brokelynEvents()
+	            )
 	          ),
-	          _react2.default.createElement('div', { id: 'brokelyn-logo-div' }),
-	          this.brokelynEvents()
+	          _react2.default.createElement('div', { id: 'brokelyn-logo-div' })
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'village-voice-events-viewer', className: 'three' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Village Voice!'
-	          ),
+	          { id: 'village-voice-events-viewer' },
 	          _react2.default.createElement('div', { id: 'village-voice-logo-div' }),
-	          this.villageVoiceEvents()
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'test' },
+	            _react2.default.createElement(
+	              'ul',
+	              null,
+	              this.villageVoiceEvents()
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brooklyn-vegan-events-viewer', className: 'two' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Brooklyn Vegan!'
-	          ),
+	          { id: 'brooklyn-vegan-events-viewer' },
 	          _react2.default.createElement('div', { id: 'brooklyn-vegan-logo-div' }),
-	          this.brooklynVeganEvents()
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            this.brooklynVeganEvents()
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'the-skint-events-viewer', className: 'three' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by The Skint!'
-	          ),
+	          { id: 'the-skint-events-viewer' },
 	          _react2.default.createElement('div', { id: 'skint-logo-div' }),
-	          this.skintEvents()
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            this.skintEvents()
+	          )
 	        )
 	      );
 	    }

@@ -17,6 +17,7 @@ export default class ResultsPage extends Component {
       return (
         <div className="event-item" >
           <a href={event.eventURL} target="_blank">
+          <li>
           <BrokelynEventItem
             source={event.source}
             cost={event.cost}
@@ -27,6 +28,7 @@ export default class ResultsPage extends Component {
             address={event.address}
             description={event.description}
           />
+          </li>
           </a>
         </div>
       );
@@ -95,25 +97,33 @@ export default class ResultsPage extends Component {
   render() {
     return (
       <div id="results-view-component">
-        <div id="brokelyn-events-viewer" className="three">
-          <p>Brought to you by Brokelyn!</p>
-          <div id="brokelyn-logo-div"></div>
-          {this.brokelynEvents()}
+        <div id="brokelyn-events-viewer">
+          <div className="test">
+            <ul>
+              {this.brokelynEvents()}
+            </ul>
+          </div>
+          <div id="brokelyn-logo-div" />
         </div>
-        <div id="village-voice-events-viewer" className="three">
-          <p>Brought to you by Village Voice!</p>
-          <div id="village-voice-logo-div"></div>
-          {this.villageVoiceEvents()}
+        <div id="village-voice-events-viewer">
+          <div id="village-voice-logo-div" />
+          <div className="test">
+            <ul>
+              {this.villageVoiceEvents()}
+            </ul>
+          </div>
         </div>
-        <div id="brooklyn-vegan-events-viewer" className="two">
-          <p>Brought to you by Brooklyn Vegan!</p>
-          <div id="brooklyn-vegan-logo-div"></div>
-          {this.brooklynVeganEvents()}
+        <div id="brooklyn-vegan-events-viewer">
+          <div id="brooklyn-vegan-logo-div" />
+          <div>
+            {this.brooklynVeganEvents()}
+          </div>
         </div>
-        <div id="the-skint-events-viewer" className="three">
-          <p>Brought to you by The Skint!</p>
-          <div id="skint-logo-div"></div>
-          {this.skintEvents()}
+        <div id="the-skint-events-viewer">
+          <div id="skint-logo-div" />
+          <div>
+            {this.skintEvents()}
+          </div>
         </div>
       </div>
     );

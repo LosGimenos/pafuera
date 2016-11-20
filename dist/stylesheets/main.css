@@ -150,6 +150,9 @@ input:hover {
 
 div#results-view-component {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   overflow: scroll;
 }
 
@@ -158,8 +161,16 @@ div#results-view-component p {
   font-size: 120%;
 }
 
-div#brokelyn-events-viewer {
-  margin-left: .5%;
+div#brokelyn-events-viewer,
+div#village-voice-events-viewer,
+div#brooklyn-vegan-events-viewer,
+div#the-skint-events-viewer {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 40%;
+  margin-bottom: 1%;
+  border: solid 1px white;
 }
 
 .event-item,
@@ -188,34 +199,112 @@ div#brokelyn-events-viewer {
   text-align: center;
 }
 
-#skint-logo-div {
-  height: 19.5em;
-  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
-  background-size: cover;
+#brokelyn-logo-div {
+  display: block;
+  position: relative;
+  height: 100%;
+  background: url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  cursor: pointer;
 }
 
-#brokelyn-logo-div {
-  height: 20em;
-  background: url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
-  background-size: cover;
-  background-position: center;
+#brokelyn-logo-div:hover,
+.test:hover ~ #brokelyn-logo-div {
+    background: linear-gradient(
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.35)),
+      url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
+        -webkit-transition-delay: 0s, 0s, 0s;
+    }
+
+.test:hover ~ #brokelyn-logo-div {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        z-index: 0;
+    }
+
+div#brokelyn-events-viewer:active .test {
+  height: 300%;
+  z-index: 3;
+  -webkit-transition-delay: 0s;
+}
+
+div#brokelyn-events-viewer .test:hover {
+  height: 300%;
+  overflow: scroll;
+  z-index: 3;
+  -webkit-transition-delay: 0s;
+}
+
+ div#brokelyn-events-viewer .test ul {
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ .test li:hover {
+  background: #eee;
+  color: #333;
 }
 
 #village-voice-logo-div {
-  height: 180px;
-  padding-top: 8.5em;
+  display: block;
+  position: relative;
+  height: 100%;
   background: url('http://socobk.com/wp-content/uploads/2014/07/villagevoice.png');
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+  cursor: pointer;
 }
 
 #brooklyn-vegan-logo-div {
+  display: block;
+  position: relative;
   background: url('http://www.brooklynvegan.com/files/2015/12/bv-1logo-new1.png');
-  height: 20em;
+  height: 100%;
   background-size: 12.25em 10em;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
+
+#skint-logo-div {
+  display: block;
+  position: relative;
+  height: 100%;
+  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
+  background-size: cover;
+  cursor: pointer;
+}
+
+div.test {
+  position: absolute;
+  top: 0;
+  display: block;
+  z-index: 1;
+  height: 0;
+  width: 100%;
+  /*padding-top: 30px;*/
+  -webkit-transition: height .5s ease;
+  -webkit-transition-delay: .4s;
+  border: 1px solid #777;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+/*#brokelyn-logo-div:hover,
+.test:hover ~ #brokelyn-logo-div {
+  background: #fff;
+  -webkit-transition-delay: 0s, 0s, 0s;
+}*/
+
 .hidden {
   display: none;
 }
