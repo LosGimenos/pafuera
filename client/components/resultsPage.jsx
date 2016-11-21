@@ -28,6 +28,10 @@ export default class ResultsPage extends Component {
       return (this.state.brokelynToggled === 'hidden') ? this.setState({ brokelynToggled: 'show' }) : this.setState({ brokelynToggled: 'hidden' });
     } else if (targetBlog === 'villageVoice') {
       return (this.state.villageVoiceToggled === 'hidden') ? this.setState({ villageVoiceToggled: 'show' }) : this.setState({ villageVoiceToggled: 'hidden' });
+    } else if (targetBlog === 'brooklynVegan') {
+      return (this.state.brooklynVeganToggled === 'hidden') ? this.setState({ brooklynVeganToggled: 'show' }) : this.setState({ brooklynVeganToggled: 'hidden' });
+    } else if (targetBlog === 'theSkint') {
+      return (this.state.theSkintToggled === 'hidden') ? this.setState({ theSkintToggled: 'show' }) : this.setState({ theSkintToggled: 'hidden' });
     }
   }
   brokelynEvents() {
@@ -119,20 +123,20 @@ export default class ResultsPage extends Component {
             {this.brokelynEvents()}
           </div>
         </div>
-        <div id="village-voice-events-viewer">
-          <div id="village-voice-logo-div" />
+        <div id="village-voice-events-viewer" onClick={this.toggleHidden}>
+          <div id="village-voice-logo-div" className="villageVoice" />
           <div className={this.state.villageVoiceToggled}>
             {this.villageVoiceEvents()}
           </div>
         </div>
-        <div id="brooklyn-vegan-events-viewer">
-          <div id="brooklyn-vegan-logo-div" />
+        <div id="brooklyn-vegan-events-viewer" onClick={this.toggleHidden}>
+          <div id="brooklyn-vegan-logo-div" className="brooklynVegan" />
           <div className={this.state.brooklynVeganToggled}>
             {this.brooklynVeganEvents()}
           </div>
         </div>
-        <div id="the-skint-events-viewer">
-          <div id="skint-logo-div" />
+        <div id="the-skint-events-viewer" onClick={this.toggleHidden}>
+          <div id="skint-logo-div" className="theSkint" />
           <div className={this.state.theSkintToggled}>
             {this.skintEvents()}
           </div>

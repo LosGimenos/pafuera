@@ -21563,7 +21563,7 @@
 	            _react2.default.createElement(
 	              'li',
 	              { onClick: this.removeStep },
-	              'Get out there!'
+	              'Go do something!'
 	            )
 	          )
 	        ),
@@ -23297,6 +23297,10 @@
 	        return this.state.brokelynToggled === 'hidden' ? this.setState({ brokelynToggled: 'show' }) : this.setState({ brokelynToggled: 'hidden' });
 	      } else if (targetBlog === 'villageVoice') {
 	        return this.state.villageVoiceToggled === 'hidden' ? this.setState({ villageVoiceToggled: 'show' }) : this.setState({ villageVoiceToggled: 'hidden' });
+	      } else if (targetBlog === 'brooklynVegan') {
+	        return this.state.brooklynVeganToggled === 'hidden' ? this.setState({ brooklynVeganToggled: 'show' }) : this.setState({ brooklynVeganToggled: 'hidden' });
+	      } else if (targetBlog === 'theSkint') {
+	        return this.state.theSkintToggled === 'hidden' ? this.setState({ theSkintToggled: 'show' }) : this.setState({ theSkintToggled: 'hidden' });
 	      }
 	    }
 	  }, {
@@ -23413,8 +23417,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'village-voice-events-viewer' },
-	          _react2.default.createElement('div', { id: 'village-voice-logo-div' }),
+	          { id: 'village-voice-events-viewer', onClick: this.toggleHidden },
+	          _react2.default.createElement('div', { id: 'village-voice-logo-div', className: 'villageVoice' }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: this.state.villageVoiceToggled },
@@ -23423,8 +23427,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brooklyn-vegan-events-viewer' },
-	          _react2.default.createElement('div', { id: 'brooklyn-vegan-logo-div' }),
+	          { id: 'brooklyn-vegan-events-viewer', onClick: this.toggleHidden },
+	          _react2.default.createElement('div', { id: 'brooklyn-vegan-logo-div', className: 'brooklynVegan' }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: this.state.brooklynVeganToggled },
@@ -23433,8 +23437,8 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'the-skint-events-viewer' },
-	          _react2.default.createElement('div', { id: 'skint-logo-div' }),
+	          { id: 'the-skint-events-viewer', onClick: this.toggleHidden },
+	          _react2.default.createElement('div', { id: 'skint-logo-div', className: 'theSkint' }),
 	          _react2.default.createElement(
 	            'div',
 	            { className: this.state.theSkintToggled },
