@@ -78,7 +78,7 @@ export default class App extends Component {
         <div id="header" className="row nav">
           <h2>Pa'Fuera</h2>
           <ul>
-            <li onClick={this.removeStep}>Get out there!</li>
+            <li onClick={this.removeStep}>Go do something!</li>
           </ul>
         </div>
         <div id="first" className="row">

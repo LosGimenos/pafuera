@@ -101,11 +101,19 @@ a {
   height: 4em;
   width: 100%;
   color: #F64747;
+  border-bottom: solid 1px white;
 }
 
 .nav h2 {
   text-align: center;
+  font-size: 205%;
+  font-family: 'Permanent Marker', cursive;
 }
+.nav ul {
+  position: relative;
+  bottom: 10%;
+}
+
 .nav li {
   list-style: none;
   float: right;
@@ -158,15 +166,24 @@ div#results-view-component p {
   font-size: 120%;
 }
 
-div#brokelyn-events-viewer {
-  margin-left: .5%;
+div#brokelyn-events-viewer,
+div#village-voice-events-viewer,
+div#brooklyn-vegan-events-viewer,
+div#the-skint-events-viewer {
+  width: 100%;
+  height: 20em;
+  position: relative;
+  display: inline-block;
 }
 
 .event-item,
 .event-item-odd {
   border: 1px solid white;
+  width: 80%;
   padding: .5%;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .event-item {
@@ -174,7 +191,6 @@ div#brokelyn-events-viewer {
 }
 
 .event-item-odd {
-  /*background-color: rgba(38, 166, 91, .65);*/
   background-color: rgba(0,0,0,.65);
 }
 
@@ -188,34 +204,40 @@ div#brokelyn-events-viewer {
   text-align: center;
 }
 
-#skint-logo-div {
-  height: 19.5em;
-  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
-  background-size: cover;
-}
-
 #brokelyn-logo-div {
-  height: 20em;
+  height: 100%;
   background: url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
-  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 #village-voice-logo-div {
-  height: 180px;
-  padding-top: 8.5em;
+  height: 100%;
   background: url('http://socobk.com/wp-content/uploads/2014/07/villagevoice.png');
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #brooklyn-vegan-logo-div {
   background: url('http://www.brooklynvegan.com/files/2015/12/bv-1logo-new1.png');
-  height: 20em;
+  height: 100%;
   background-size: 12.25em 10em;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+#skint-logo-div {
+  height: 100%;
+  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .hidden {
   display: none;
+}
+
+.show {
+  display: block;
+  z-index:;
+  position: relative;
 }
