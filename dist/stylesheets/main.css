@@ -151,6 +151,8 @@ input:hover {
 div#results-view-component {
   height: 100%;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 div#results-view-component p {
@@ -158,8 +160,22 @@ div#results-view-component p {
   font-size: 120%;
 }
 
-div#brokelyn-events-viewer {
-  margin-left: .5%;
+div#brokelyn-events-viewer,
+div#village-voice-events-viewer,
+div#brooklyn-vegan-events-viewer,
+div#the-skint-events-viewer {
+  width: 100%;
+  height: 20em;
+  position: relative;
+  display: block;
+}
+
+/*div#brokelyn-events-viewer {
+  margin-bottom: 40em;
+}*/
+
+div#brokelyn-events-list {
+
 }
 
 .event-item,
@@ -188,34 +204,41 @@ div#brokelyn-events-viewer {
   text-align: center;
 }
 
-#skint-logo-div {
-  height: 19.5em;
-  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
-  background-size: cover;
-}
-
 #brokelyn-logo-div {
-  height: 20em;
+  height: 100%;
   background: url('http://brokelyn.com/wp-content/uploads/2014/01/bk-logo.png');
-  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 #village-voice-logo-div {
-  height: 180px;
-  padding-top: 8.5em;
+  height: 100%;
   background: url('http://socobk.com/wp-content/uploads/2014/07/villagevoice.png');
   background-position: center;
-  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #brooklyn-vegan-logo-div {
   background: url('http://www.brooklynvegan.com/files/2015/12/bv-1logo-new1.png');
-  height: 20em;
+  height: 100%;
   background-size: 12.25em 10em;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+#skint-logo-div {
+  height: 100%;
+  background: url('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQgp8dAdgy90OZC_h-p1iZdVD-wFyFxLk-FHsQmyFXA_Iu-vN89vpkAZQ');
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .hidden {
   display: none;
+}
+
+.show {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }

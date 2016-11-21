@@ -12,6 +12,24 @@ const propTypes = {
 };
 
 export default class ResultsPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      brokelynToggled: 'hidden',
+      villageVoiceToggled: 'hidden',
+      brooklynVeganToggled: 'hidden',
+      theSkintToggled: 'hidden',
+    };
+    this.toggleHidden = this.toggleHidden.bind(this);
+  }
+  toggleHidden(e) {
+    const targetBlog = e.target.className;
+    if (targetBlog === 'brokelyn') {
+      return (this.state.brokelynToggled === 'hidden') ? this.setState({ brokelynToggled: 'show' }) : this.setState({ brokelynToggled: 'hidden' });
+    } else if (targetBlog === 'villageVoice') {
+      return (this.state.villageVoiceToggled === 'hidden') ? this.setState({ villageVoiceToggled: 'show' }) : this.setState({ villageVoiceToggled: 'hidden' });
+    }
+  }
   brokelynEvents() {
     return this.props.brokelynEvents.map((event) => {
       return (
@@ -95,25 +113,29 @@ export default class ResultsPage extends Component {
   render() {
     return (
       <div id="results-view-component">
-        <div id="brokelyn-events-viewer" className="three">
-          <p>Brought to you by Brokelyn!</p>
-          <div id="brokelyn-logo-div"></div>
-          {this.brokelynEvents()}
+        <div id="brokelyn-events-viewer" onClick={this.toggleHidden}>
+          <div id="brokelyn-logo-div" className="brokelyn" />
+          <div id="brokelyn-events-list" className={this.state.brokelynToggled}>
+            {this.brokelynEvents()}
+          </div>
         </div>
-        <div id="village-voice-events-viewer" className="three">
-          <p>Brought to you by Village Voice!</p>
-          <div id="village-voice-logo-div"></div>
-          {this.villageVoiceEvents()}
+        <div id="village-voice-events-viewer">
+          <div id="village-voice-logo-div" />
+          <div className={this.state.villageVoiceToggled}>
+            {this.villageVoiceEvents()}
+          </div>
         </div>
-        <div id="brooklyn-vegan-events-viewer" className="two">
-          <p>Brought to you by Brooklyn Vegan!</p>
-          <div id="brooklyn-vegan-logo-div"></div>
-          {this.brooklynVeganEvents()}
+        <div id="brooklyn-vegan-events-viewer">
+          <div id="brooklyn-vegan-logo-div" />
+          <div className={this.state.brooklynVeganToggled}>
+            {this.brooklynVeganEvents()}
+          </div>
         </div>
-        <div id="the-skint-events-viewer" className="three">
-          <p>Brought to you by The Skint!</p>
-          <div id="skint-logo-div"></div>
-          {this.skintEvents()}
+        <div id="the-skint-events-viewer">
+          <div id="skint-logo-div" />
+          <div className={this.state.theSkintToggled}>
+            {this.skintEvents()}
+          </div>
         </div>
       </div>
     );

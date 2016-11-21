@@ -23277,10 +23277,29 @@
 	  function ResultsPage() {
 	    _classCallCheck(this, ResultsPage);
 	
-	    return _possibleConstructorReturn(this, (ResultsPage.__proto__ || Object.getPrototypeOf(ResultsPage)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (ResultsPage.__proto__ || Object.getPrototypeOf(ResultsPage)).call(this));
+	
+	    _this.state = {
+	      brokelynToggled: 'hidden',
+	      villageVoiceToggled: 'hidden',
+	      brooklynVeganToggled: 'hidden',
+	      theSkintToggled: 'hidden'
+	    };
+	    _this.toggleHidden = _this.toggleHidden.bind(_this);
+	    return _this;
 	  }
 	
 	  _createClass(ResultsPage, [{
+	    key: 'toggleHidden',
+	    value: function toggleHidden(e) {
+	      var targetBlog = e.target.className;
+	      if (targetBlog === 'brokelyn') {
+	        return this.state.brokelynToggled === 'hidden' ? this.setState({ brokelynToggled: 'show' }) : this.setState({ brokelynToggled: 'hidden' });
+	      } else if (targetBlog === 'villageVoice') {
+	        return this.state.villageVoiceToggled === 'hidden' ? this.setState({ villageVoiceToggled: 'show' }) : this.setState({ villageVoiceToggled: 'hidden' });
+	      }
+	    }
+	  }, {
 	    key: 'brokelynEvents',
 	    value: function brokelynEvents() {
 	      return this.props.brokelynEvents.map(function (event) {
@@ -23384,47 +23403,43 @@
 	        { id: 'results-view-component' },
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brokelyn-events-viewer', className: 'three' },
+	          { id: 'brokelyn-events-viewer', onClick: this.toggleHidden },
+	          _react2.default.createElement('div', { id: 'brokelyn-logo-div', className: 'brokelyn' }),
 	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Brokelyn!'
-	          ),
-	          _react2.default.createElement('div', { id: 'brokelyn-logo-div' }),
-	          this.brokelynEvents()
+	            'div',
+	            { id: 'brokelyn-events-list', className: this.state.brokelynToggled },
+	            this.brokelynEvents()
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'village-voice-events-viewer', className: 'three' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Village Voice!'
-	          ),
+	          { id: 'village-voice-events-viewer' },
 	          _react2.default.createElement('div', { id: 'village-voice-logo-div' }),
-	          this.villageVoiceEvents()
+	          _react2.default.createElement(
+	            'div',
+	            { className: this.state.villageVoiceToggled },
+	            this.villageVoiceEvents()
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'brooklyn-vegan-events-viewer', className: 'two' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by Brooklyn Vegan!'
-	          ),
+	          { id: 'brooklyn-vegan-events-viewer' },
 	          _react2.default.createElement('div', { id: 'brooklyn-vegan-logo-div' }),
-	          this.brooklynVeganEvents()
+	          _react2.default.createElement(
+	            'div',
+	            { className: this.state.brooklynVeganToggled },
+	            this.brooklynVeganEvents()
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'the-skint-events-viewer', className: 'three' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Brought to you by The Skint!'
-	          ),
+	          { id: 'the-skint-events-viewer' },
 	          _react2.default.createElement('div', { id: 'skint-logo-div' }),
-	          this.skintEvents()
+	          _react2.default.createElement(
+	            'div',
+	            { className: this.state.theSkintToggled },
+	            this.skintEvents()
+	          )
 	        )
 	      );
 	    }
