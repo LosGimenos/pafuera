@@ -11,7 +11,7 @@ class VillageVoiceEventsController {
   }
   static getAllOfSelectedDay(req, res) {
     const date = new DateSearch();
-    const searchDate = date.getSearchDate();
+    const searchDate = date.getSingleDigitDay();
     VillageVoiceEventsDAO.searchByLike({ start_date: `${searchDate}` }).then((events) => {
       res.status(200).json(events);
     });

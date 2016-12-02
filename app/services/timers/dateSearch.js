@@ -26,13 +26,20 @@ class DateSearch {
     const day = dateArray[2];
     return `${dateArray[1]} ${day}`;
   }
+  getSingleDigitDay() {
+    const dateArray = this.getSearchArray();
+    const doubleDigitDay = dateArray[2];
+    const day = doubleDigitDay.replace('0', '');
+    return `${dateArray[1]} ${day}`;
+  }
   getModifiedSearchDate(index) {
     const dateArray = this.getSearchArray();
     const longMonthKey = dateArray[1];
     const day = dateArray[2];
+    const singleDigitDay = dateArray[2].replace('0', '');
     const monthArray = this.months[longMonthKey];
     const monthName = monthArray[index];
-    return (index < 1) ? `${monthName} ${day}` : `${monthName}/${day}`;
+    return (index < 1) ? `${monthName} ${singleDigitDay}` : `${monthName}/${singleDigitDay}`;
   }
 }
 
