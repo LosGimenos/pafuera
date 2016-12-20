@@ -36,13 +36,13 @@ const BrokelynEventItem = ({ source,
         </div>
       </div>
       <div className="price-date-div">
-          <div className="title-span"><p>{cost}</p></div>
-          <div className="date-div">
-            <div className="date-div-text">
-              <p>{startDate}</p>
-            </div>
+        <div className="title-span"><p>{cost}</p></div>
+        <div className="date-div">
+          <div className="date-div-text">
+            <p>{startDate}</p>
           </div>
         </div>
+      </div>
     </div>
   );
 };

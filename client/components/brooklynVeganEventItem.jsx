@@ -26,11 +26,21 @@ const BrooklynVeganEventItem = ({ source,
   return (
     <div>
       <div className="img-div" style={divStyle} />
-      <h3 className="event-title">{title}</h3>
-      <div className="title-span hidden"><p>{cost}</p></div>
-      <p>{startDate}</p>
-      <p>{address}</p>
-      <p>{description}</p>
+      <div className="event-info">
+        <h3 className="event-title">{title}</h3>
+        <p>{address}</p>
+        <div className="description">
+          <p>{description}</p>
+        </div>
+      </div>
+      <div className="price-date-div">
+        <div className="title-span"><p>Check Event</p></div>
+        <div className="date-div">
+          <div className="date-div-text">
+            <p>{startDate}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

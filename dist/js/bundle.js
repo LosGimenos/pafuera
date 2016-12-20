@@ -23604,33 +23604,53 @@
 	    null,
 	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
 	    _react2.default.createElement(
-	      "h3",
-	      { className: "event-title" },
-	      title
-	    ),
-	    _react2.default.createElement(
 	      "div",
-	      { className: "title-span hidden" },
+	      { className: "event-info" },
+	      _react2.default.createElement(
+	        "h3",
+	        { className: "event-title" },
+	        title
+	      ),
 	      _react2.default.createElement(
 	        "p",
 	        null,
-	        cost
+	        address
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "description" },
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          description
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "p",
-	      null,
-	      startDate
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      address
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      description
+	      "div",
+	      { className: "price-date-div" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "title-span" },
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Check Event"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "date-div" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "date-div-text" },
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            startDate
+	          )
+	        )
+	      )
 	    )
 	  );
 	};
