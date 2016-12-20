@@ -23309,7 +23309,7 @@
 	      return this.props.brokelynEvents.map(function (event) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'event-item' },
+	          { className: 'event-item-odd' },
 	          _react2.default.createElement(
 	            'a',
 	            { href: event.eventURL, target: '_blank' },
@@ -23333,7 +23333,7 @@
 	      return this.props.brooklynVeganEvents.map(function (event) {
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'event-item' },
+	          { className: 'event-item-odd' },
 	          _react2.default.createElement(
 	            'a',
 	            { href: event.eventURL, target: '_blank' },
@@ -23461,7 +23461,7 @@
 /* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23495,40 +23495,62 @@
 	      description = _ref.description;
 	
 	  var divStyle = {
-	    background: "url('" + imgSrc + "')"
+	    background: 'url(\'' + imgSrc + '\')',
+	    backgroundSize: 'auto 100%',
+	    backgroundRepeat: 'no-repeat'
 	  };
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
-	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement('div', { className: 'img-div', style: divStyle }),
 	    _react2.default.createElement(
-	      "h3",
-	      { className: "event-title" },
-	      title
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "title-span" },
+	      'div',
+	      { className: 'event-info' },
 	      _react2.default.createElement(
-	        "p",
+	        'h3',
+	        { className: 'event-title' },
+	        title
+	      ),
+	      _react2.default.createElement(
+	        'p',
 	        null,
-	        cost
+	        address
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'description' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          description
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "p",
-	      null,
-	      startDate
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      address
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      description
+	      'div',
+	      { className: 'price-date-div' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'title-span' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          cost
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'date-div' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'date-div-text' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            startDate
+	          )
+	        )
+	      )
 	    )
 	  );
 	};
@@ -23621,7 +23643,7 @@
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23655,40 +23677,62 @@
 	      description = _ref.description;
 	
 	  var divStyle = {
-	    background: "url('" + imgSrc + "')"
+	    background: 'url(\'' + imgSrc + '\')',
+	    backgroundSize: 'cover',
+	    backgroundRepeat: 'no-repeat'
 	  };
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
-	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement('div', { className: 'img-div', style: divStyle }),
 	    _react2.default.createElement(
-	      "h3",
-	      { className: "event-title" },
-	      title
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "title-span" },
+	      'div',
+	      { className: 'event-info' },
 	      _react2.default.createElement(
-	        "p",
+	        'h3',
+	        { className: 'event-title' },
+	        title
+	      ),
+	      _react2.default.createElement(
+	        'p',
 	        null,
-	        cost
+	        address
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'description' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          description
+	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "p",
-	      null,
-	      startDate
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      address
-	    ),
-	    _react2.default.createElement(
-	      "p",
-	      null,
-	      description
+	      'div',
+	      { className: 'price-date-div' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'title-span' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          cost
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'date-div' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'date-div-text' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            startDate
+	          )
+	        )
+	      )
 	    )
 	  );
 	};
