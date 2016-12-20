@@ -36,5 +36,3 @@ const SkintEventItem = ({
 SkintEventItem.propTypes = propTypes;
 
 export default SkintEventItem;
-
-

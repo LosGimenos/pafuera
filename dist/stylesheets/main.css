@@ -143,17 +143,19 @@ a {
 }
 
 input {
-  background-color: #5C97BF;
-  font-size: 100%;
-  width: 50%;
-  height: 3em;
   float: right;
-  border: 1px solid white;
-  box-shadow: 2px 2px 10px 4px;
+  background: #0099cc;
+  color: #ffffff;
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 3px 0 0 #007299;
 }
 
 input:hover {
-  background-color: #E4F1FE;
+  background: #33a6cc;
 }
 
 div#results-view-component {
@@ -164,6 +166,14 @@ div#results-view-component {
 div#results-view-component p {
   text-align: center;
   font-size: 120%;
+}
+
+div.img-div {
+  position: relative;
+  display: inline-block;
+  height: 15em;
+  width: 30%;
+  top: 0;
 }
 
 div#brokelyn-events-viewer,
@@ -194,14 +204,56 @@ div#the-skint-events-viewer {
   background-color: rgba(0,0,0,.65);
 }
 
+.event-info {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+}
+
+.event-info p {
+  font-family: monospace;
+}
+
 .event-title {
   text-decoration: underline;
   text-align: center;
+  font-family: 'Buda', cursive;
 }
 
 .title-span {
   background-color: #6C7A89;
   text-align: center;
+  height: 2em;
+  margin: auto;
+  font-size: 200%;
+}
+
+div.description {
+  font-size: 85%;
+  border: solid 1px black;
+  margin-top: 2%;
+}
+
+div.description p {
+  font-family: 'Lato', sans-serif;
+}
+
+div.price-date-div {
+  display: inline-block;
+  margin-left: 2%;
+  text-align: center;
+  vertical-align: top;
+  width: 23%;
+  height: 15em;
+}
+
+div.date-div {
+  height: 4em;
+  margin-top: 40%;
+}
+
+div.date-div-text {
+  border-top: 1px solid white;
 }
 
 #brokelyn-logo-div {
@@ -232,6 +284,7 @@ div#the-skint-events-viewer {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .hidden {
   display: none;
 }

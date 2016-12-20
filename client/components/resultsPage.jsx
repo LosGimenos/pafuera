@@ -37,7 +37,7 @@ export default class ResultsPage extends Component {
   brokelynEvents() {
     return this.props.brokelynEvents.map((event) => {
       return (
-        <div className="event-item" >
+        <div className="event-item-odd" >
           <a href={event.eventURL} target="_blank">
           <BrokelynEventItem
             source={event.source}
@@ -57,7 +57,7 @@ export default class ResultsPage extends Component {
   brooklynVeganEvents() {
     return this.props.brooklynVeganEvents.map((event) => {
       return (
-        <div className="event-item" >
+        <div className="event-item-odd" >
           <a href={event.eventURL} target="_blank">
           <BrooklynVeganEventItem
             source={event.source}
