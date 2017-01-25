@@ -23,7 +23,8 @@ const SkintEventItem = ({
   }) => {
   const divStyle = {
     background: `url('${imgSrc}')`,
-    backgroundSize: 'cover',
+    backgroundSize: '20em 20em',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
   };
   return (

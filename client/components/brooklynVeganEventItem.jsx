@@ -22,6 +22,9 @@ const BrooklynVeganEventItem = ({ source,
                            }) => {
   const divStyle = {
     background: `url('${imgSrc}')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
   };
   return (
     <div>

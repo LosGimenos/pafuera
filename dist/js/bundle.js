@@ -23563,7 +23563,7 @@
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23597,55 +23597,58 @@
 	      description = _ref.description;
 	
 	  var divStyle = {
-	    background: "url('" + imgSrc + "')"
+	    background: 'url(\'' + imgSrc + '\')',
+	    backgroundSize: 'cover',
+	    backgroundPosition: 'center',
+	    backgroundRepeat: 'no-repeat'
 	  };
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
-	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement('div', { className: 'img-div', style: divStyle }),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "event-info" },
+	      'div',
+	      { className: 'event-info' },
 	      _react2.default.createElement(
-	        "h3",
-	        { className: "event-title" },
+	        'h3',
+	        { className: 'event-title' },
 	        title
 	      ),
 	      _react2.default.createElement(
-	        "p",
+	        'p',
 	        null,
 	        address
 	      ),
 	      _react2.default.createElement(
-	        "div",
-	        { className: "description" },
+	        'div',
+	        { className: 'description' },
 	        _react2.default.createElement(
-	          "p",
+	          'p',
 	          null,
 	          description
 	        )
 	      )
 	    ),
 	    _react2.default.createElement(
-	      "div",
-	      { className: "price-date-div" },
+	      'div',
+	      { className: 'price-date-div' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "title-span" },
+	        'div',
+	        { className: 'title-span' },
 	        _react2.default.createElement(
-	          "p",
+	          'p',
 	          null,
-	          "Check Event"
+	          'Check Event'
 	        )
 	      ),
 	      _react2.default.createElement(
-	        "div",
-	        { className: "date-div" },
+	        'div',
+	        { className: 'date-div' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "date-div-text" },
+	          'div',
+	          { className: 'date-div-text' },
 	          _react2.default.createElement(
-	            "p",
+	            'p',
 	            null,
 	            startDate
 	          )
@@ -23800,7 +23803,8 @@
 	
 	  var divStyle = {
 	    background: 'url(\'' + imgSrc + '\')',
-	    backgroundSize: 'cover',
+	    backgroundSize: '20em 20em',
+	    backgroundPosition: 'center',
 	    backgroundRepeat: 'no-repeat'
 	  };
 	  return _react2.default.createElement(
