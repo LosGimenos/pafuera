@@ -23,12 +23,27 @@ const SkintEventItem = ({
   }) => {
   const divStyle = {
     background: `url('${imgSrc}')`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
   };
   return (
     <div>
       <div className="img-div" style={divStyle} />
-      <p>{startDate}</p>
-      <p>{description}</p>
+      <div className="event-info">
+        <h3 className="event-title">{title}</h3>
+        <p>{address}</p>
+        <div className="description">
+          <p>{description}</p>
+        </div>
+      </div>
+      <div className="price-date-div">
+        <div className="title-span"><p>{cost}</p></div>
+        <div className="date-div">
+          <div className="date-div-text">
+            <p>{startDate}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
