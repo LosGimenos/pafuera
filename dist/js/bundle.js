@@ -23765,7 +23765,7 @@
 /* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23799,21 +23799,62 @@
 	      description = _ref.description;
 	
 	  var divStyle = {
-	    background: "url('" + imgSrc + "')"
+	    background: 'url(\'' + imgSrc + '\')',
+	    backgroundSize: 'cover',
+	    backgroundRepeat: 'no-repeat'
 	  };
 	  return _react2.default.createElement(
-	    "div",
+	    'div',
 	    null,
-	    _react2.default.createElement("div", { className: "img-div", style: divStyle }),
+	    _react2.default.createElement('div', { className: 'img-div', style: divStyle }),
 	    _react2.default.createElement(
-	      "p",
-	      null,
-	      startDate
+	      'div',
+	      { className: 'event-info' },
+	      _react2.default.createElement(
+	        'h3',
+	        { className: 'event-title' },
+	        title
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        address
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'description' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          description
+	        )
+	      )
 	    ),
 	    _react2.default.createElement(
-	      "p",
-	      null,
-	      description
+	      'div',
+	      { className: 'price-date-div' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'title-span' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          cost
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'date-div' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'date-div-text' },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            startDate
+	          )
+	        )
+	      )
 	    )
 	  );
 	};

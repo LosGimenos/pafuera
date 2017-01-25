@@ -9,7 +9,7 @@ class SkintScrape {
     this.baseUrl =
       'https://theskint.com/';
     this.skintLogo =
-      'https://static1.squarespace.com/static/5235cb72e4b01ae2ba612744/53cd8dbbe4b0640068f72698/53cd90a3e4b0669c8d1d4df1/1406041899578/TheSkintLogo.jpg'
+      'https://static1.squarespace.com/static/5235cb72e4b01ae2ba612744/53cd8dbbe4b0640068f72698/53cd90a3e4b0669c8d1d4df1/1406041899578/TheSkintLogo.jpg';
     this.dateTimeArray = [];
     this.isSponsored = false;
 
@@ -88,7 +88,7 @@ class SkintScrape {
               startDate: `${eventDate}, ${eventTime}`,
               description: description,
               eventURL: eventURL,
-              imgURL: requestLogo,
+              imgSrc: requestLogo,
             };
             if (eventTime && eventTime.includes('/') !== true) {
                 eventArray.push(eventInfo);
@@ -98,7 +98,7 @@ class SkintScrape {
                  console.log(eventItem);
                  const eventData = {
                    source: eventItem.source,
-                   cost: eventItem.cost,
+                   cost: eventItem.price,
                    start_date: eventItem.startDate,
                    title: eventItem.title,
                    event_url: eventItem.eventURL,
