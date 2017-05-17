@@ -36,14 +36,10 @@ class VillageVoiceEventsController {
   }
   static scrape(req, response) {
     const eventArray = [];
-    const testUrl =
-      'http://www.villagevoice.com/calendar?dateRange[]=2016-11-06';
     const baseUrl =
       'http://www.villagevoice.com';
     const queryUrl =
       '/calendar?dateRange[]=';
-    const bkLogoImg =
-      'http://brokelyn.wpengine.netdna-cdn.com/wp-content/uploads/2014/01/bk-logo.png';
     let dateUrl;
     let readableDate;
     let fullQueryUrl;
