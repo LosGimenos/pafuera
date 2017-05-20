@@ -9,6 +9,7 @@ class VillageVoiceEventsController {
       res.status(200).json(events);
     });
   }
+
   static getAllOfSelectedDay(req, res) {
     const date = new DateSearch();
     const searchDate = date.getSingleDigitDay();
@@ -16,6 +17,7 @@ class VillageVoiceEventsController {
       res.status(200).json(events);
     });
   }
+
   static create(req, res) {
     const eventData = {
       source: req.body.source,
@@ -30,10 +32,12 @@ class VillageVoiceEventsController {
     VillageVoiceEventsDAO.create(eventData)
                      .then((event) => res.status(200).json(event));
   }
+
   static delete(req, res) {
     VillageVoiceEventsDAO.delete(req.params.id)
                     .then(() => res.status(204).end());
   }
+
   static scrape(req, response) {
     const eventArray = [];
     const baseUrl =
@@ -43,7 +47,6 @@ class VillageVoiceEventsController {
     let dateUrl;
     let readableDate;
     let fullQueryUrl;
-
 
     function parseItem(item) {
       return item.trim();
@@ -70,61 +73,58 @@ class VillageVoiceEventsController {
 
     getDate();
 
-    request.get(fullQueryUrl)
-           .then((res) => {
-             const $ = cheerio.load(res.text);
+    request
+      .get(fullQueryUrl)
+       .end((err, res) => {
+         const $ = cheerio.load(res.text);
 
-             $('li[class=recommended]').each(function(index, event) {
-               const findTitle = $('div.grid', this).find('div.title').text();
-               const parseTitle = parseItem(findTitle);
+         $('li[class=recommended]').each(function(index, event) {
+           const findTitle = $('div.grid', this).find('div.title').text();
+           const parseTitle = parseItem(findTitle);
 
-               const timeLocation = $('div.grid', this).find('div.location').text();
-               const parseTimeLocation = parseItem(timeLocation);
+           const timeLocation = $('div.grid', this).find('div.location').text();
+           const parseTimeLocation = parseItem(timeLocation);
 
-               const address = $('div.grid', this).find('div.address').text();
-               const parseAddress = parseItem(address);
+           const address = $('div.grid', this).find('div.address').text();
+           const parseAddress = parseItem(address);
 
-               const eventURL = $('div.grid', this).find('a', 'div.title').attr('href');
-               const parseEventURL = `${baseUrl}${eventURL}`;
+           const eventURL = $('div.grid', this).find('a', 'div.title').attr('href');
+           const parseEventURL = `${baseUrl}${eventURL}`;
 
-               const imgSrc = $('div.img-box', this).find('img', 'a').attr('src');
+           const imgSrc = $('div.img-box', this).find('img', 'a').attr('src');
 
-               const price = $(this).find('div.tix').text();
-               const parsePrice = parseItem(price);
+           const price = $(this).find('div.tix').text();
+           const parsePrice = parseItem(price);
 
-               const eventInfo = {
-                 source: 'Village Voice',
-                 cost: parsePrice || 'Gratis!',
-                 startDate: `${readableDate}${parseTimeLocation}`,
-                 title: parseTitle,
-                 eventURL: parseEventURL,
-                 imgSrc: imgSrc || bkLogoImg,
-                 address: parseAddress,
-                 description: 'Check event for more info',
-               };
-               eventArray.push(eventInfo);
-             });
-             eventArray.forEach((eventItem) => {
-               console.log(eventItem);
-               const eventData = {
-                 source: eventItem.source,
-                 cost: eventItem.cost,
-                 start_date: eventItem.startDate,
-                 title: eventItem.title,
-                 event_url: eventItem.eventURL,
-                 img_src: eventItem.imgSrc,
-                 address: eventItem.address,
-                 description: eventItem.description,
-               };
-               VillageVoiceEventsDAO.create(eventData)
-                       .then((event) => response.status(200).json(event));
-             });
-           })
-           .catch((err) => {
-            console.log(err);
-           });
-  }
-}
+           const eventInfo = {
+             source: 'Village Voice',
+             cost: parsePrice || 'Gratis!',
+             startDate: `${readableDate}${parseTimeLocation}`,
+             title: parseTitle,
+             eventURL: parseEventURL,
+             imgSrc: imgSrc || bkLogoImg,
+             address: parseAddress,
+             description: 'Check event for more info',
+           };
+           eventArray.push(eventInfo);
+         });
+         eventArray.forEach((eventItem) => {
+           console.log(eventItem);
+           const eventData = {
+             source: eventItem.source,
+             cost: eventItem.cost,
+             start_date: eventItem.startDate,
+             title: eventItem.title,
+             event_url: eventItem.eventURL,
+             img_src: eventItem.imgSrc,
+             address: eventItem.address,
+             description: eventItem.description,
+           };
+           // VillageVoiceEventsDAO.create(eventData)
+       //             .then((event) => response.status(200).json(event));
+            });
+       });
+  };
+};
 
 module.exports = VillageVoiceEventsController;
-
