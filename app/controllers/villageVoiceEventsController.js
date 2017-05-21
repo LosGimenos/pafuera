@@ -75,7 +75,11 @@ class VillageVoiceEventsController {
 
     request
       .get(fullQueryUrl)
-       .end((err, res) => {
+      .timeout({
+        response: 5000,
+        deadline: 60000
+      })
+       .then((res, err) => {
          const $ = cheerio.load(res.text);
 
          $('li[class=recommended]').each(function(index, event) {
