@@ -98,12 +98,11 @@ class VillageVoiceEventsController {
         $(eventsArray).each(function(index, item) {
           const source = 'Village Voice';
           const title = $('.c-Date__title', item).text();
+          const eventURL = $('.c-Date__linkContainer a', item).attr('href');
           // const cost = $('' , item).text();
           const description = $('div.c-Date__innerContainer p', item).text();
 
-          console.log('source= '+source,
-                      'title= '+title,
-                      'description= '+description)
+          console.log(eventURL);
         })
 
            // VillageVoiceEventsDAO.create(eventData)
