@@ -116,9 +116,11 @@ class VillageVoiceEventsController {
             source: 'Village Voice',
             title: title,
             eventURL: eventURL,
-            // cost: cost,
-            // address: address,
-            // startDate: `${readableDate} ${time}`
+            cost: cost,
+            address: location,
+            startDate: `${readableDate}${time}`,
+            description: description,
+            imgSrc: 'http://socobk.com/wp-content/uploads/2014/07/villagevoice.png'
           }
 
           console.log(eventInfo);
