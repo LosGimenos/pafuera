@@ -9,6 +9,7 @@ class VillageVoiceEventsController {
       res.status(200).json(events);
     });
   }
+
   static getAllOfSelectedDay(req, res) {
     const date = new DateSearch();
     const searchDate = date.getSingleDigitDay();
@@ -16,6 +17,7 @@ class VillageVoiceEventsController {
       res.status(200).json(events);
     });
   }
+
   static create(req, res) {
     const eventData = {
       source: req.body.source,
@@ -30,20 +32,21 @@ class VillageVoiceEventsController {
     VillageVoiceEventsDAO.create(eventData)
                      .then((event) => res.status(200).json(event));
   }
+
   static delete(req, res) {
     VillageVoiceEventsDAO.delete(req.params.id)
                     .then(() => res.status(204).end());
   }
+
   static scrape(req, response) {
-    const eventArray = [];
+    const eventList = [];
     const baseUrl =
       'http://www.villagevoice.com';
     const queryUrl =
-      '/calendar?dateRange[]=';
+      '/datebook';
     let dateUrl;
     let readableDate;
     let fullQueryUrl;
-
 
     function parseItem(item) {
       return item.trim();
@@ -64,67 +67,72 @@ class VillageVoiceEventsController {
       const cleanMonth = monthObject[monthKey];
 
       dateUrl = `${getYear}-${cleanMonth}-${getDayNum}`;
-      fullQueryUrl = `${baseUrl}${queryUrl}${dateUrl}`;
+      fullQueryUrl = `${baseUrl}${queryUrl}`;
       readableDate = `${monthKey} ${getDayNum}: `;
     }
 
     getDate();
 
-    request.get(fullQueryUrl)
-           .then((res) => {
-             const $ = cheerio.load(res.text);
+    request
+      .get(fullQueryUrl)
+      .then((res) => {
+        let eventsArray = [];
+        let wrapperArray = [];
+        const $ = cheerio.load(res.text);
 
-             $('li[class=recommended]').each(function(index, event) {
-               const findTitle = $('div.grid', this).find('div.title').text();
-               const parseTitle = parseItem(findTitle);
+        const wrappers = $('div[class=c-CalendarDay__wrapper]');
+        const dateStuff = $('div[class=c-Today]');
+        const headers = $('h1[class=c-Today__abbrev]');
+        const todayDate = $('h1[class=c-Today__date]');
 
-               const timeLocation = $('div.grid', this).find('div.location').text();
-               const parseTimeLocation = parseItem(timeLocation);
+        wrappers.each(function(index, wrapper) {
+          wrapperArray[index] = $(wrapper);
+        });
 
-               const address = $('div.grid', this).find('div.address').text();
-               const parseAddress = parseItem(address);
+        const todaysWrapper = wrapperArray[0];
 
-               const eventURL = $('div.grid', this).find('a', 'div.title').attr('href');
-               const parseEventURL = `${baseUrl}${eventURL}`;
+        $('.c-CalendarEach', todaysWrapper).each(function(index, event) {
+          eventsArray[index] = $(event);
+        });
 
-               const imgSrc = $('div.img-box', this).find('img', 'a').attr('src');
+        $(eventsArray).each(function(index, item) {
+          const title = $('.c-Date__title', item).text();
+          const eventURL = $('.c-Date__linkContainer a', item).attr('href');
+          const description = $('div.c-Date__innerContainer p', item).text();
+          let cost;
+          let time;
+          let location;
 
-               const price = $(this).find('div.tix').text();
-               const parsePrice = parseItem(price);
+          $('.c-Date__metadata', item).each(function(index, subject) {
+            const locationWrapper = $(subject).find('.c-Date__metadata__each')[0];
+            const timeWrapper = $(subject).find('.c-Date__metadata__each')[1];
+            const costWrapper = $(subject).find('.c-Date__metadata__each')[2];
+            location = $(locationWrapper).text();
+            time = $(timeWrapper).text();
+            cost = $(costWrapper).text();
+          });
 
-               const eventInfo = {
-                 source: 'Village Voice',
-                 cost: parsePrice || 'Gratis!',
-                 startDate: `${readableDate}${parseTimeLocation}`,
-                 title: parseTitle,
-                 eventURL: parseEventURL,
-                 imgSrc: imgSrc || bkLogoImg,
-                 address: parseAddress,
-                 description: 'Check event for more info',
-               };
-               eventArray.push(eventInfo);
-             });
-             eventArray.forEach((eventItem) => {
-               console.log(eventItem);
-               const eventData = {
-                 source: eventItem.source,
-                 cost: eventItem.cost,
-                 start_date: eventItem.startDate,
-                 title: eventItem.title,
-                 event_url: eventItem.eventURL,
-                 img_src: eventItem.imgSrc,
-                 address: eventItem.address,
-                 description: eventItem.description,
-               };
-               VillageVoiceEventsDAO.create(eventData)
-                       .then((event) => response.status(200).json(event));
-             });
-           })
-           .catch((err) => {
-            console.log(err);
-           });
-  }
-}
+          const eventInfo = {
+            source: 'Village Voice',
+            title: title,
+            event_url: eventURL,
+            cost: cost,
+            address: location,
+            start_date: `${readableDate}${time}`,
+            description: description,
+            img_src: 'http://socobk.com/wp-content/uploads/2014/07/villagevoice.png'
+          }
+
+          eventList.push(eventInfo);
+          VillageVoiceEventsDAO.create(eventInfo);
+
+          console.log(eventInfo);
+        })
+
+        return eventList;
+      })
+      .then((event) => response.status(200).json(event));
+  };
+};
 
 module.exports = VillageVoiceEventsController;
-
