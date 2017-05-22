@@ -96,13 +96,32 @@ class VillageVoiceEventsController {
         });
 
         $(eventsArray).each(function(index, item) {
-          const source = 'Village Voice';
           const title = $('.c-Date__title', item).text();
           const eventURL = $('.c-Date__linkContainer a', item).attr('href');
-          // const cost = $('' , item).text();
           const description = $('div.c-Date__innerContainer p', item).text();
+          let cost;
+          let time;
+          let location;
 
-          console.log(eventURL);
+          $('.c-Date__metadata', item).each(function(index, subject) {
+            const locationWrapper = $(subject).find('.c-Date__metadata__each')[0];
+            const timeWrapper = $(subject).find('.c-Date__metadata__each')[1];
+            const costWrapper = $(subject).find('.c-Date__metadata__each')[2];
+            location = $(locationWrapper).text();
+            time = $(timeWrapper).text();
+            cost = $(costWrapper).text();
+          });
+
+          const eventInfo = {
+            source: 'Village Voice',
+            title: title,
+            eventURL: eventURL,
+            // cost: cost,
+            // address: address,
+            // startDate: `${readableDate} ${time}`
+          }
+
+          console.log(eventInfo);
         })
 
            // VillageVoiceEventsDAO.create(eventData)
