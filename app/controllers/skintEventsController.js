@@ -29,7 +29,7 @@ class SkintEventsController {
       description: req.body.description,
     };
     SkintEventsDAO.create(eventData)
-                     .then((event) => res.status(200).json(event));
+                  .then((event) => res.status(200).json(event));
   }
   static delete(req, res) {
     SkintEventsDAO.delete(req.params.id)
