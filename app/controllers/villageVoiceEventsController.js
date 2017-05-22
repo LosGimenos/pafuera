@@ -43,7 +43,7 @@ class VillageVoiceEventsController {
     const baseUrl =
       'http://www.villagevoice.com';
     const queryUrl =
-      '/calendar?dateRange[]=';
+      '/datebook';
     let dateUrl;
     let readableDate;
     let fullQueryUrl;
@@ -67,7 +67,7 @@ class VillageVoiceEventsController {
       const cleanMonth = monthObject[monthKey];
 
       dateUrl = `${getYear}-${cleanMonth}-${getDayNum}`;
-      fullQueryUrl = `${baseUrl}${queryUrl}${dateUrl}`;
+      fullQueryUrl = `${baseUrl}${queryUrl}`;
       readableDate = `${monthKey} ${getDayNum}: `;
     }
 
@@ -75,59 +75,41 @@ class VillageVoiceEventsController {
 
     request
       .get(fullQueryUrl)
-      .timeout({
-        response: 5000,
-        deadline: 60000
-      })
-       .then((res, err) => {
-         const $ = cheerio.load(res.text);
+      .then((res) => {
+        let eventsArray = [];
+        let wrapperArray = [];
+        const $ = cheerio.load(res.text);
 
-         $('li[class=recommended]').each(function(index, event) {
-           const findTitle = $('div.grid', this).find('div.title').text();
-           const parseTitle = parseItem(findTitle);
+        const wrappers = $('div[class=c-CalendarDay__wrapper]');
+        const dateStuff = $('div[class=c-Today]');
+        const headers = $('h1[class=c-Today__abbrev]');
+        const todayDate = $('h1[class=c-Today__date]');
 
-           const timeLocation = $('div.grid', this).find('div.location').text();
-           const parseTimeLocation = parseItem(timeLocation);
+        wrappers.each(function(index, wrapper) {
+          wrapperArray[index] = $(wrapper);
+        });
 
-           const address = $('div.grid', this).find('div.address').text();
-           const parseAddress = parseItem(address);
+        const todaysWrapper = wrapperArray[0];
 
-           const eventURL = $('div.grid', this).find('a', 'div.title').attr('href');
-           const parseEventURL = `${baseUrl}${eventURL}`;
+        $('.c-CalendarEach', todaysWrapper).each(function(index, event) {
+          eventsArray[index] = $(event);
+        });
 
-           const imgSrc = $('div.img-box', this).find('img', 'a').attr('src');
+        $(eventsArray).each(function(index, item) {
+          const source = 'Village Voice';
+          const title = $('.c-Date__title', item).text();
+          // const cost = $('' , item).text();
+          const description = $('div.c-Date__innerContainer p', item).text();
 
-           const price = $(this).find('div.tix').text();
-           const parsePrice = parseItem(price);
+          console.log('source= '+source,
+                      'title= '+title,
+                      'description= '+description)
+        })
 
-           const eventInfo = {
-             source: 'Village Voice',
-             cost: parsePrice || 'Gratis!',
-             startDate: `${readableDate}${parseTimeLocation}`,
-             title: parseTitle,
-             eventURL: parseEventURL,
-             imgSrc: imgSrc || bkLogoImg,
-             address: parseAddress,
-             description: 'Check event for more info',
-           };
-           eventArray.push(eventInfo);
-         });
-         eventArray.forEach((eventItem) => {
-           console.log(eventItem);
-           const eventData = {
-             source: eventItem.source,
-             cost: eventItem.cost,
-             start_date: eventItem.startDate,
-             title: eventItem.title,
-             event_url: eventItem.eventURL,
-             img_src: eventItem.imgSrc,
-             address: eventItem.address,
-             description: eventItem.description,
-           };
            // VillageVoiceEventsDAO.create(eventData)
-       //             .then((event) => response.status(200).json(event));
-            });
-       });
+                   // .then((event) => response.status(200).json(event));
+      });
+
   };
 };
 
