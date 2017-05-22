@@ -46,73 +46,74 @@ class SkintScrape {
     }
   }
 
-  makeRequest() {
+  makeRequest(response) {
     const requestDate = this.getDateOrTime;
     const requestPrice = this.findPrice;
     const eventArray = this.eventArray;
     const requestLogo = this.skintLogo;
 
-    request.get(this.baseUrl)
-         .then((res) => {
-           const $ = cheerio.load(res.text);
+    request
+       .get(this.baseUrl)
+       .then(res => {
+         const $ = cheerio.load(res.text);
 
-           let dateHeader =
-             $('div#content').find('header').first().find('a').text();
+         let dateHeader =
+           $('div#content').find('header').first().find('a').text();
 
-           if (dateHeader.search('(SPONSORED)') > 0) {
-            dateHeader = $('article', 'div#content').next().find('a').text();
-            this.isSponsored = true;
-           };
+         if (dateHeader.search('(SPONSORED)') > 0) {
+          dateHeader = $('article', 'div#content').next().find('a').text();
+          this.isSponsored = true;
+         };
 
-           // Get the date //
-           const splitDateHeader = dateHeader.split('');
-           const eventDate = this.getDateOrTime(splitDateHeader);
+         // Get the date //
+         const splitDateHeader = dateHeader.split('');
+         const eventDate = this.getDateOrTime(splitDateHeader);
 
-           // Get the other details //
-           let events =
-            $('article').first().find('.entry-content').children();
-           if (this.isSponsored) {
-              events = $('article').next().find('.entry-content').children()
-           }
-            events.each(function(index, entry) {
-              const singleEvent = $(entry).text();
-              const eventTime = requestDate(singleEvent);
-              const description = singleEvent;
-              const eventURL = $('a', entry).attr('href');
-              const price = requestPrice(singleEvent);
+         // Get the other details //
+         let events =
+          $('article').first().find('.entry-content').children();
+         if (this.isSponsored) {
+            events = $('article').next().find('.entry-content').children()
+         }
+          events.each(function(index, entry) {
+            const singleEvent = $(entry).text();
+            const eventTime = requestDate(singleEvent);
+            const description = singleEvent;
+            const eventURL = $('a', entry).attr('href');
+            const price = requestPrice(singleEvent);
 
-            // Consolodate into Event Information object //
-            const eventInfo = {
-              source: 'The Skint',
-              price: price,
-              startDate: `${eventDate}, ${eventTime}`,
-              description: description,
-              eventURL: eventURL,
-              imgSrc: requestLogo,
-            };
-            if (eventTime && eventTime.includes('/') !== true) {
-                eventArray.push(eventInfo);
-            };
-           });
-            eventArray.forEach((eventItem) => {
-                 console.log(eventItem);
-                 const eventData = {
-                   source: eventItem.source,
-                   cost: eventItem.price,
-                   start_date: eventItem.startDate,
-                   title: eventItem.title,
-                   event_url: eventItem.eventURL,
-                   img_src: eventItem.imgSrc,
-                   address: eventItem.address,
-                   description: eventItem.description,
-                 };
-                 SkintEventsDAO.create(eventData)
-                         .then((event) => res.status(200).json(event));
-             });
-         })
-         .catch((err) => {
-          console.log(err);
+          // Consolodate into Event Information object //
+          const eventInfo = {
+            source: 'The Skint',
+            price: price,
+            startDate: `${eventDate}, ${eventTime}`,
+            description: description,
+            eventURL: eventURL,
+            imgSrc: requestLogo,
+          };
+          if (eventTime && eventTime.includes('/') !== true) {
+              eventArray.push(eventInfo);
+          };
          });
+          eventArray.forEach((eventItem) => {
+               const eventData = {
+                 source: eventItem.source,
+                 cost: eventItem.price,
+                 start_date: eventItem.startDate,
+                 title: eventItem.title,
+                 event_url: eventItem.eventURL,
+                 img_src: eventItem.imgSrc,
+                 address: eventItem.address,
+                 description: eventItem.description,
+               };
+               SkintEventsDAO.create(eventData)
+           });
+          return eventArray;
+       })
+       .then(event => response.json(event))
+       .catch((err) => {
+        console.log(err);
+       })
   }
 }
 
