@@ -37,7 +37,7 @@ class SkintEventsController {
   }
   static scrape(req, res) {
     const skintScrape = new SkintScrape();
-    skintScrape.makeRequest();
+    skintScrape.makeRequest(res);
   }
 }
 

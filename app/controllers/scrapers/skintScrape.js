@@ -46,7 +46,7 @@ class SkintScrape {
     }
   }
 
-  makeRequest() {
+  makeRequest(response) {
     const requestDate = this.getDateOrTime;
     const requestPrice = this.findPrice;
     const eventArray = this.eventArray;
@@ -54,7 +54,7 @@ class SkintScrape {
 
     request
        .get(this.baseUrl)
-       .then((res) => {
+       .then(res => {
          const $ = cheerio.load(res.text);
 
          let dateHeader =
@@ -96,7 +96,6 @@ class SkintScrape {
           };
          });
           eventArray.forEach((eventItem) => {
-               console.log(eventItem);
                const eventData = {
                  source: eventItem.source,
                  cost: eventItem.price,
@@ -107,12 +106,11 @@ class SkintScrape {
                  address: eventItem.address,
                  description: eventItem.description,
                };
-               // SkintEventsDAO.create(eventData)
+               SkintEventsDAO.create(eventData)
            });
-
-          return eventArray
+          return eventArray;
        })
-       .then((event) => status(200).json(event))
+       .then(event => response.json(event))
        .catch((err) => {
         console.log(err);
        })
