@@ -39,7 +39,7 @@ class VillageVoiceEventsController {
   }
 
   static scrape(req, response) {
-    const eventArray = [];
+    const eventList = [];
     const baseUrl =
       'http://www.villagevoice.com';
     const queryUrl =
@@ -115,21 +115,23 @@ class VillageVoiceEventsController {
           const eventInfo = {
             source: 'Village Voice',
             title: title,
-            eventURL: eventURL,
+            event_url: eventURL,
             cost: cost,
             address: location,
-            startDate: `${readableDate}${time}`,
+            start_date: `${readableDate}${time}`,
             description: description,
-            imgSrc: 'http://socobk.com/wp-content/uploads/2014/07/villagevoice.png'
+            img_src: 'http://socobk.com/wp-content/uploads/2014/07/villagevoice.png'
           }
+
+          eventList.push(eventInfo);
+          VillageVoiceEventsDAO.create(eventInfo);
 
           console.log(eventInfo);
         })
 
-           // VillageVoiceEventsDAO.create(eventData)
-                   // .then((event) => response.status(200).json(event));
-      });
-
+        return eventList;
+      })
+      .then((event) => response.status(200).json(event));
   };
 };
 
