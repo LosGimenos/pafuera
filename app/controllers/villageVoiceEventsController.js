@@ -125,8 +125,6 @@ class VillageVoiceEventsController {
 
           eventList.push(eventInfo);
           VillageVoiceEventsDAO.create(eventInfo);
-
-          console.log(eventInfo);
         })
 
         return eventList;

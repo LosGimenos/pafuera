@@ -69,7 +69,6 @@ class BrokelynEventsController {
              });
              eventArray.forEach((eventItem) => {
                if (eventItem !== eventArray[0]) {
-                 console.log(eventItem);
                  const eventData = {
                    source: eventItem.source,
                    cost: eventItem.cost,
