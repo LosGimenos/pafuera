@@ -77,33 +77,38 @@ class BrooklynVeganEventsController {
                const findStartTime = $('.ds-listing-details-container', this).find('div.dtstart').html();
                const startTime = findStartTime.trim();
 
-               const eventInfo = {
-                 source: 'Brooklyn Vegan',
-                 cost: 'Undisclosed!',
-                 startDate: startDate,
-                 title: title,
-                 eventURL: eventURL,
-                 imgSrc: imageURL || bkLogoImg,
-                 address: `${address}, ${city}`,
-                 description: `${location}, @${startTime}`,
-               };
-               eventArray.push(eventInfo);
-             });
-             eventArray.forEach((eventItem) => {
-               const eventData = {
-                 source: eventItem.source,
-                 cost: eventItem.cost,
-                 start_date: eventItem.startDate,
-                 title: eventItem.title,
-                 event_url: eventItem.eventURL,
-                 img_src: eventItem.imgSrc,
-                 address: eventItem.address,
-                 description: eventItem.description,
-               };
-               BrooklynVeganEventsDAO.create(eventData)
-                         .then((event) => response.status(200).json(event));
-             });
-           })
+               // find cost through promises
+               let cost;
+
+               request.get(eventURL)
+                .then(res => {
+                  const $ = cheerio.load(res.text);
+                  cost = $('.ds-ticket-info').text();
+                  return cost;
+                })
+                .then(price => {
+                   const eventInfo = {
+                     source: 'Brooklyn Vegan',
+                     cost: price,
+                     start_date: startDate,
+                     title: title,
+                     event_url: eventURL,
+                     img_src: imageURL || bkLogoImg,
+                     address: `${address}, ${city}`,
+                     description: `${location}, @${startTime}`,
+                   };
+                   eventArray.push(eventInfo);
+                 })
+                  console.log(eventArray)
+                 })
+                console.log(eventArray)
+                return eventArray;
+
+    })
+    .then((events) => {
+                    console.log(events);
+                    response.status(200).json(events);
+                 })
          .catch((err) => {
           console.log(err);
          });
