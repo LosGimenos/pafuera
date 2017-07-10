@@ -294,3 +294,29 @@ div.date-div-text {
   z-index:;
   position: relative;
 }
+
+@media screen and (max-width: 980px) {
+  #hero-text {
+    position: absolute;
+    top: 15em;
+    left: -1em;
+    width: 100%;
+    font-size: 200%;
+  }
+
+  #form-div {
+    right: 18%;
+    position: absolute;
+    height: 5em;
+  }
+
+  #form-div input {
+    height: 5em;
+    font-size: 200%;
+  }
+
+  #header {
+    height: 4em;
+    font-size: 300%;
+  }
+}
