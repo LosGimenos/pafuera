@@ -39,17 +39,17 @@ class BrokelynEventsController {
     const baseUrl =
       'http://brokelyn.com/events/list/?action=tribe_list&tribe_paged=1&tribe_event_display=list';
     const bkLogoImg =
-      'http://brokelyn.wpengine.netdna-cdn.com/wp-content/uploads/2014/01/bk-logo.png';
+      'http://www.oriana-leckert.com/wp-content/uploads/2013/12/bk-logo.png';
 
     request.get(baseUrl)
            .then((res) => {
              const $ = cheerio.load(res.text);
              $('.tribe-events-loop').children().each((inx, article) => {
                const cost = $('.tribe-events-event-cost', article).children().text();
-               const startDate = $('.vcard', article).find('.dtstart').text();
-               const streetAddress = $('.vcard', article).find('span.street-address').text();
-               const city = $('.vcard', article).find('span.locality').text();
-               const zip = $('.vcard', article).find('span.postal-code').text();
+               const startDate = $('.tribe-events-event-meta', article).find('span.tribe-event-date-start').text();
+               const streetAddress = $('.tribe-events-event-meta', article).find('span.tribe-street-address').text();
+               const city = $('.tribe-events-event-meta', article).find('span.tribe-locality').text();
+               const zip = $('.tribe-events-event-meta', article).find('span.tribe-postal-code').text();
                const eventURL = $('a<h2', article).children().attr('href');
                const title = $('a<h2', article).children().attr('title');
                const imgSrc = $('div.tribe-events-event-image', article).find('img').attr('data-lazy-src');
